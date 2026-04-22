@@ -1,107 +1,116 @@
 export const config = {
     developer: {
-        name: "Huzaif",
-        fullName: "Huzaif Ahmed",
+        name: "Arijit",
+        fullName: "ArijitPatra",
         title: "Full Stack Developer",
-        description: "Full-stack builder creating digital experiences that respect humans and scale with clarity. Accessibility is my north star."
+        description: "Computer Science Engineering student with hands-on experience in full-stack web development, AI integration, and database management. Passionate about creating innovative solutions and impactful software projects."
     },
     social: {
-        github: "huzaifahmedz",
-        email: "dev.huzaif@gmail.com",
-        location: "India"
+        github: "arijit-bit",
+        email: "arijitpatra204@gmail.com",
+        phone: "9907583810",
+        location: "India",
+        x: "https://x.com/patra_arij68778",
+        instagram: "https://www.instagram.com/_a_r_0_7_/"
     },
     about: {
         title: "About Me",
-        description: "Full-stack builder creating digital experiences that respect humans and scale with clarity. Accessibility is my north star. I specialize in building modern web applications with React, Node.js, and cutting-edge technologies."
+        description: "Highly motivated and detail-oriented Computer Science Engineering student with hands-on experience in full-stack web development, AI integration, and database management. Skilled in building dynamic, responsive web applications using technologies like React.js, Next.js, and Tailwind CSS. Proficient in programming with Python, Java, and JavaScript, and experienced in integrating machine learning models and voice assistants into user-friendly applications. Passionate about creating innovative solutions, optimizing system performance, and contributing to impactful software projects."
     },
     experiences: [
         {
-            position: "Frontend Developer",
-            company: "SelectSkillSet",
-            period: "2024 - Present",
-            location: "Remote",
-            description: "Developing modern, responsive frontend applications with focus on user experience and performance. Working with cutting-edge technologies to build scalable web solutions.",
+            position: "Higher Secondary (Class XII)",
+            company: "Bankura Banga Vidyalaya",
+            period: "2021 - 2023",
+            location: "Bankura, West Bengal",
+            description: "Completed higher secondary education with 85% marks under WBBSE board. Developed strong foundation in science and mathematics.",
             responsibilities: [
-                "Building responsive and interactive user interfaces using React and Next.js",
-                "Implementing modern UI/UX designs with TailwindCSS and Framer Motion",
-                "Optimizing application performance and ensuring cross-browser compatibility",
-                "Collaborating with design and backend teams to deliver high-quality features"
+                "Excelled in Science stream with focus on Mathematics and Computer Science",
+                "Participated in school-level programming competitions",
+                "Developed interest in web development and software engineering"
             ],
-            technologies: ["React", "Next.js", "TailwindCSS", "JavaScript", "Framer Motion", "TypeScript"]
+            technologies: ["C", "C++", "Python", "Mathematics"]
         },
         {
-            position: "Full Stack Developer",
-            company: "Tekisky",
-            period: "2023 - 2024",
-            location: "Remote",
-            description: "Developed and maintained full-stack web applications, working on both frontend and backend systems. Collaborated with cross-functional teams to deliver robust software solutions.",
+            position: "BE in Computer Science Engineering",
+            company: "Chandigarh University",
+            period: "2023 - 2027",
+            location: "Mohali, Punjab",
+            description: "Pursuing Bachelor of Engineering in Computer Science with strong academic performance. Actively involved in hackathons, personal projects, and skill development in modern web technologies.",
             responsibilities: [
-                "Developed and maintained full-stack web applications using React, Node.js, and MongoDB",
-                "Implemented RESTful APIs and integrated third-party services",
-                "Built responsive user interfaces and optimized application performance",
-                "Worked on database design and backend architecture"
+                "Building full-stack web applications with MERN stack and Next.js",
+                "Participating in Smart India Hackathon and other coding competitions",
+                "Developing AI-integrated applications and voice assistant projects",
+                "Working with databases including MongoDB, MySQL, and Cassandra"
             ],
-            technologies: ["React", "Node.js", "MongoDB", "Express", "JavaScript", "MERN Stack"]
+            technologies: ["React", "Next.js", "Node.js", "MongoDB", "Python", "Java"]
         }
     ],
     projects: [
         {
             id: 1,
-            title: "AI-Powered Code Review Assistant",
+            title: "AIMS",
+            subtitle: "Announcement & Information Management System",
             category: "Full Stack",
-            technologies: "Python, TensorFlow, React, FastAPI, PostgreSQL, Docker",
-            image: "/images/project-1.webp"
+            technologies: "Next.js, MongoDB, Express.js, Node.js, JWT, bcrypt, React",
+            image: "/images/project-1.webp",
+            deploymentLink: "https://aims-1-2-1.vercel.app/",
+            description: "Centralized announcement platform for educational institutions with role-based access, secure authentication, and clean information delivery.",
+            highlights: "Selected for the university project expo."
         },
         {
             id: 2,
-            title: "Real-time Collaborative Whiteboard",
-            category: "Full Stack",
-            technologies: "TypeScript, WebRTC, Socket.io, Canvas API, Node.js, Redis",
-            image: "/images/project-2.webp"
+            title: "Travalog",
+            subtitle: "Smart Travel Tracer",
+            category: "Mobile App",
+            technologies: "React Native, Node.js, MongoDB, Gamification, Real-time Tracking",
+            image: "/images/project-2.webp",
+            sourceLink: "https://github.com/arijit-bit/travelog-v2",
+            description: "Travel tracing app built for Smart India Hackathon with gamified milestones, levels, and rewards for sustainable travel habits.",
+            highlights: "Improved data visualization and user engagement by 30%."
         },
         {
             id: 3,
-            title: "Blockchain Voting System",
-            category: "Full Stack",
-            technologies: "Solidity, Web3.js, React, Ethereum, IPFS, MetaMask",
-            image: "/images/project-3.webp"
+            title: "Friday AI",
+            subtitle: "Generative AI Assistant",
+            category: "AI/ML",
+            technologies: "React, LLM APIs, Voice Recognition, Text Generation, Smart Automation",
+            image: "/images/project-3.webp",
+            deploymentLink: "https://friday-ai-inky.vercel.app/",
+            description: "Generative AI assistant with real-time voice interaction, contextual responses, text generation, and smart automation workflows."
         },
         {
             id: 4,
-            title: "Cloud Infrastructure Dashboard",
-            category: "Full Stack",
-            technologies: "Go, Kubernetes, Grafana, Prometheus, Terraform, React",
-            image: "/images/project-4.webp"
-        },
-        {
-            id: 5,
-            title: "Neural Network Visualizer",
-            category: "Full Stack",
-            technologies: "Python, TensorFlow.js, D3.js, Next.js, WebGL, TypeScript",
-            image: "/images/project-5.webp"
+            title: "Spotify Clone",
+            subtitle: "Music Streaming Platform",
+            category: "Frontend",
+            technologies: "HTML, CSS, JavaScript, Tailwind CSS, Audio API",
+            image: "/images/project-4.webp",
+            deploymentLink: "https://spotify-git-main-arijit-bits-projects.vercel.app",
+            description: "Spotify-inspired music streaming interface with playlists, song cards, responsive layouts, and custom audio playback controls.",
+            highlights: "Optimized UI responsiveness by 25%."
         }
     ],
     contact: {
-        email: "dev.huzaif@gmail.com",
-        github: "https://github.com/huzaifahmedz",
-        linkedin: "https://www.linkedin.com",
-        twitter: "https://x.com",
-        instagram: "https://www.instagram.com"
+        email: "arijitpatra204@gmail.com",
+        phone: "9907583810",
+        github: "https://github.com/arijit-bit",
+        linkedin: "https://linkedin.com/in/arijit-patra-4a40a328b",
+        twitter: "https://x.com/patra_arij68778",
+        instagram: "https://www.instagram.com/_a_r_0_7_/"
     },
     skills: {
         develop: {
             title: "DEVELOP",
             description: "Full-stack development with modern web technologies",
-            details: "Building scalable web applications using React, Node.js, and cutting-edge frameworks. Specializing in creating responsive, performant, and accessible user interfaces.",
-            tools: ["JavaScript", "TypeScript", "React", "Next.js", "Node.js", "Express.js", "MongoDB", "TailwindCSS", "Framer Motion", "Three.js"]
+            details: "Building scalable web applications using React, Next.js, Node.js, and Express.js. Proficient in MERN stack development, REST APIs, and database management with MongoDB and SQL. Experienced in AI integration and voice assistant implementation.",
+            tools: ["JavaScript", "Python", "Java", "C++", "React.js", "Next.js", "Node.js", "Express.js", "MongoDB", "MySQL", "REST APIs", "Tailwind CSS"]
         },
         design: {
             title: "DESIGN",
-            description: "UI/UX design and modern web interfaces",
-            details: "Creating beautiful and intuitive user experiences with focus on accessibility and user-centered design principles.",
-            tools: ["UI Design", "UX Design", "Figma", "Photoshop", "Motion Design", "Responsive Design", "Accessibility", "Prototyping"]
+            description: "Frontend development and UI/UX implementation",
+            details: "Creating responsive and dynamic user interfaces with modern CSS frameworks. Focus on user experience, accessibility, and performance optimization across devices.",
+            tools: ["HTML", "CSS", "Tailwind CSS", "React.js", "Responsive Design", "UI Components", "Framer Motion", "Web Accessibility"]
         }
     }
 };
-
-

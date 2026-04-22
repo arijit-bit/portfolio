@@ -63,13 +63,49 @@ const Work = () => {
 
                   <div>
                     <h4>{project.title}</h4>
-                    <p>{project.category}</p>
+                    <p>{project.subtitle || project.category}</p>
                   </div>
                 </div>
                 <h4>Tools and features</h4>
                 <p>{project.technologies}</p>
+                <h4>Overview</h4>
+                <p>{project.description}</p>
+                {project.highlights && (
+                  <>
+                    <h4>Impact</h4>
+                    <p>{project.highlights}</p>
+                  </>
+                )}
+                <div className="work-actions">
+                  {project.deploymentLink && (
+                    <a
+                      href={project.deploymentLink}
+                      target="_blank"
+                      rel="noreferrer"
+                      data-cursor="disable"
+                    >
+                      Live Demo
+                    </a>
+                  )}
+                  {project.sourceLink && (
+                    <a
+                      href={project.sourceLink}
+                      target="_blank"
+                      rel="noreferrer"
+                      data-cursor="disable"
+                    >
+                      GitHub
+                    </a>
+                  )}
+                </div>
               </div>
-              <WorkImage image={project.image} alt={project.title} />
+              <WorkImage
+                alt={project.title}
+                title={project.title}
+                category={project.category}
+                technologies={project.technologies}
+                link={project.deploymentLink || project.sourceLink}
+              />
             </div>
           ))}
         </div>

@@ -9,6 +9,12 @@
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
 }
+.split-word {
+  margin-right: 0.3em;
+}
+.split-word:last-child {
+  margin-right: 0;
+}
 @media only screen and (max-width: 1600px) {
   .section-container {
     width: 1200px;
