@@ -10,7 +10,6 @@ export let lenis: Lenis | null = null;
 
 const Navbar = () => {
   useEffect(() => {
-    // Initialize Lenis smooth scroll
     lenis = new Lenis({
       duration: 1.7,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -22,45 +21,51 @@ const Navbar = () => {
       infinite: false,
     });
 
-    // Start paused
     lenis.stop();
 
-    // Handle smooth scroll animation frame
+    let rafId = 0;
     function raf(time: number) {
       lenis?.raf(time);
-      requestAnimationFrame(raf);
+      rafId = requestAnimationFrame(raf);
     }
-    requestAnimationFrame(raf);
+    rafId = requestAnimationFrame(raf);
 
-    // Handle navigation links
-    let links = document.querySelectorAll(".header ul a");
-    links.forEach((elem) => {
-      let element = elem as HTMLAnchorElement;
-      element.addEventListener("click", (e) => {
-        if (window.innerWidth > 1024) {
-          e.preventDefault();
-          let elem = e.currentTarget as HTMLAnchorElement;
-          let section = elem.getAttribute("data-href");
-          if (section && lenis) {
-            const target = document.querySelector(section) as HTMLElement;
-            if (target) {
-              lenis.scrollTo(target, {
-                offset: 0,
-                duration: 1.5,
-              });
-            }
-          }
-        }
-      });
-    });
-
-    // Handle resize
-    window.addEventListener("resize", () => {
+    const handleResize = () => {
       lenis?.resize();
+    };
+
+    const handleLinkClick = (e: Event) => {
+      if (window.innerWidth <= 1024) return;
+
+      e.preventDefault();
+      const elem = e.currentTarget as HTMLAnchorElement;
+      const section = elem.getAttribute("data-href");
+      if (section && lenis) {
+        const target = document.querySelector(section) as HTMLElement | null;
+        if (target) {
+          lenis.scrollTo(target, {
+            offset: 0,
+            duration: 1.5,
+          });
+        }
+      }
+    };
+
+    const links = document.querySelectorAll(".header ul a");
+    links.forEach((elem) => {
+      elem.addEventListener("click", handleLinkClick);
     });
+
+    window.addEventListener("resize", handleResize);
 
     return () => {
+      cancelAnimationFrame(rafId);
+      window.removeEventListener("resize", handleResize);
+      links.forEach((elem) => {
+        elem.removeEventListener("click", handleLinkClick);
+      });
       lenis?.destroy();
+      lenis = null;
     };
   }, []);
   return (

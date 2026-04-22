@@ -115,11 +115,11 @@ const WorkImage = (props: Props) => {
             <rect x="36" y="266" width="138" height="16" rx="8" fill="rgba(255,255,255,0.12)" />
             <rect x="188" y="266" width="92" height="16" rx="8" fill={palette.accent} />
           </svg>
-          <div className="work-art-copy">
-            <span>{props.category}</span>
-            <strong>{props.title}</strong>
-            <p>{props.technologies}</p>
-          </div>
+        </div>
+        <div className="work-art-copy">
+          <span>{props.category}</span>
+          <strong>{props.title}</strong>
+          <p>{props.technologies}</p>
         </div>
         {isVideo && <video src={video} autoPlay muted playsInline loop></video>}
       </a>
