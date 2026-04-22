@@ -16,7 +16,7 @@ import { setProgress } from "../Loading";
 const Scene = () => {
   const canvasDiv = useRef<HTMLDivElement | null>(null);
   const hoverDivRef = useRef<HTMLDivElement>(null);
-  const sceneRef = useRef(new THREE.Scene());
+  const sceneRef = useRef<THREE.Scene | null>(null);
   const characterRef = useRef<THREE.Object3D | null>(null);
   const { setLoading } = useLoading();
 
@@ -26,7 +26,9 @@ const Scene = () => {
     const rect = canvasDiv.current.getBoundingClientRect();
     const container = { width: rect.width, height: rect.height };
     const aspect = container.width / container.height;
-    const scene = sceneRef.current;
+    const scene = new THREE.Scene();
+    sceneRef.current = scene;
+    let isDisposed = false;
 
     const renderer = new THREE.WebGLRenderer({
       alpha: true,
@@ -63,7 +65,7 @@ const Scene = () => {
     };
 
     loadCharacter().then((gltf) => {
-      if (!gltf) return;
+      if (!gltf || isDisposed) return;
 
       const animations = setAnimations(gltf);
       if (hoverDivRef.current) {
@@ -165,6 +167,7 @@ const Scene = () => {
     animate();
 
     return () => {
+      isDisposed = true;
       cancelAnimationFrame(frameId);
       clearTimeout(debounce);
       observer.disconnect();
@@ -172,8 +175,10 @@ const Scene = () => {
       document.removeEventListener("visibilitychange", onVisibilityChange);
       window.removeEventListener("resize", onResize);
 
+      characterRef.current = null;
       scene.clear();
       renderer.dispose();
+      sceneRef.current = null;
 
       if (canvasDiv.current?.contains(renderer.domElement)) {
         canvasDiv.current.removeChild(renderer.domElement);
