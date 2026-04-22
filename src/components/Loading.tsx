@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./styles/Loading.css";
 import { useLoading } from "../context/LoadingProvider";
 
@@ -9,29 +9,71 @@ const Loading = ({ percent }: { percent: number }) => {
   const [loaded, setLoaded] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [clicked, setClicked] = useState(false);
-
-  if (percent >= 100) {
-    setTimeout(() => {
-      setLoaded(true);
-      setTimeout(() => {
-        setIsLoaded(true);
-      }, 1000);
-    }, 600);
-  }
+  const exitStartedRef = useRef(false);
 
   useEffect(() => {
-    import("./utils/initialFX").then((module) => {
-      if (isLoaded) {
+    if (percent < 100 || loaded) return;
+
+    const loadedTimeout = setTimeout(() => {
+      setLoaded(true);
+    }, 600);
+
+    return () => {
+      clearTimeout(loadedTimeout);
+    };
+  }, [loaded, percent]);
+
+  useEffect(() => {
+    if (!loaded || isLoaded) return;
+
+    const isLoadedTimeout = setTimeout(() => {
+      setIsLoaded(true);
+    }, 1000);
+
+    return () => {
+      clearTimeout(isLoadedTimeout);
+    };
+  }, [isLoaded, loaded]);
+
+  useEffect(() => {
+    if (!isLoaded) return;
+    if (exitStartedRef.current) return;
+
+    exitStartedRef.current = true;
+    let isCancelled = false;
+    const clickTimeout = setTimeout(() => {
+      if (!isCancelled) {
         setClicked(true);
-        setTimeout(() => {
+      }
+    }, 50);
+    const exitTimeout = setTimeout(() => {
+      if (!isCancelled) {
+        setIsLoading(false);
+      }
+    }, 900);
+
+    import("./utils/initialFX")
+      .then((module) => {
+        if (isCancelled) return;
+
+        try {
           if (module.initialFX) {
             module.initialFX();
           }
-          setIsLoading(false);
-        }, 900);
-      }
-    });
-  }, [isLoaded]);
+        } catch (error) {
+          console.error("initialFX failed", error);
+        }
+      })
+      .catch((error) => {
+        console.error("Loading screen exit failed", error);
+      });
+
+    return () => {
+      isCancelled = true;
+      clearTimeout(clickTimeout);
+      clearTimeout(exitTimeout);
+    };
+  }, [isLoaded, setIsLoading]);
 
   function handleMouseMove(e: React.MouseEvent<HTMLElement>) {
     const { currentTarget: target } = e;
@@ -98,14 +140,14 @@ export const setProgress = (setLoading: (value: number) => void) => {
   let interval = setInterval(() => {
     if (percent <= 50) {
       let rand = Math.round(Math.random() * 5);
-      percent = percent + rand;
+      percent = Math.min(percent + rand, 50);
       setLoading(percent);
     } else {
       clearInterval(interval);
       interval = setInterval(() => {
-        percent = percent + Math.round(Math.random());
+        percent = Math.min(percent + Math.round(Math.random()), 91);
         setLoading(percent);
-        if (percent > 91) {
+        if (percent >= 91) {
           clearInterval(interval);
         }
       }, 2000);
@@ -122,7 +164,7 @@ export const setProgress = (setLoading: (value: number) => void) => {
       clearInterval(interval);
       interval = setInterval(() => {
         if (percent < 100) {
-          percent++;
+          percent = Math.min(percent + 1, 100);
           setLoading(percent);
         } else {
           resolve(percent);

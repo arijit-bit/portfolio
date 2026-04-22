@@ -129,28 +129,8 @@
     radial-gradient(circle at top left, rgba(255, 255, 255, 0.08), transparent 35%),
     linear-gradient(145deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
 }
-.work-link {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background-color: var(--backgroundColor);
-  width: 50px;
-  border-radius: 50px;
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 25px;
-  box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.5),
-    inset 0px 0px 10px 0px #393939;
-  transition: 0.3s;
-  opacity: 0;
-}
 .work-image a:hover {
   color: inherit;
-}
-.work-image a:hover .work-link {
-  opacity: 1;
 }
 .work-image video {
   position: absolute;

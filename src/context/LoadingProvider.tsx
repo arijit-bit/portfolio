@@ -2,7 +2,6 @@ import {
   createContext,
   PropsWithChildren,
   useContext,
-  useEffect,
   useState,
 } from "react";
 import Loading from "../components/Loading";
@@ -22,9 +21,10 @@ export const LoadingProvider = ({ children }: PropsWithChildren) => {
   const value = {
     isLoading,
     setIsLoading,
-    setLoading,
+    setLoading: (percent: number) => {
+      setLoading((current) => Math.max(current, Math.min(percent, 100)));
+    },
   };
-  useEffect(() => {}, [loading]);
 
   return (
     <LoadingContext.Provider value={value as LoadingType}>

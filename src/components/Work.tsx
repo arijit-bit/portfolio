@@ -77,16 +77,6 @@ const Work = () => {
                   </>
                 )}
                 <div className="work-actions">
-                  {project.deploymentLink && (
-                    <a
-                      href={project.deploymentLink}
-                      target="_blank"
-                      rel="noreferrer"
-                      data-cursor="disable"
-                    >
-                      Live Demo
-                    </a>
-                  )}
                   {project.sourceLink && (
                     <a
                       href={project.sourceLink}

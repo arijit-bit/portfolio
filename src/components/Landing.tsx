@@ -3,10 +3,9 @@ import "./styles/Landing.css";
 import { config } from "../config";
 
 const Landing = ({ children }: PropsWithChildren) => {
-  const nameParts =
-    config.developer.fullName.match(/[A-Z][a-z]*/g) || [config.developer.name];
-  const firstName = nameParts[0] || config.developer.name;
-  const lastName = nameParts.slice(1).join(" ") || "";
+  const displayName = config.developer.fullName
+    .replace(/([a-z])([A-Z])/g, "$1 $2")
+    .trim();
 
   return (
     <>
@@ -14,11 +13,7 @@ const Landing = ({ children }: PropsWithChildren) => {
         <div className="landing-container">
           <div className="landing-intro">
             <h2>Hello! I'm</h2>
-            <h1>
-              {firstName.toUpperCase()}
-              <br />
-              {lastName && <span>{lastName.toUpperCase()}</span>}
-            </h1>
+            <h1>{displayName.toUpperCase()}</h1>
           </div>
           <div className="landing-info">
             <h3>A Creative</h3>

@@ -1,6 +1,5 @@
 import type { CSSProperties } from "react";
 import { useMemo, useState } from "react";
-import { MdArrowOutward } from "react-icons/md";
 
 interface Props {
   alt?: string;
@@ -64,11 +63,6 @@ const WorkImage = (props: Props) => {
         rel="noreferrer"
         data-cursor={"disable"}
       >
-        {props.link && (
-          <div className="work-link">
-            <MdArrowOutward />
-          </div>
-        )}
         <div
           className="work-art"
           aria-label={props.alt}
