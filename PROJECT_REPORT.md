@@ -19,7 +19,7 @@ Personal portfolio website for `ArijitPatra`, built with `React`, `Vite`, `Three
   - `AIMS`
   - `Travalog`
   - `Friday AI`
-  - `Spotify Clone`
+  - `Pegion Mail`
 - Added subtitle support for cleaner project titles.
 - Added `Live Demo` and `GitHub` action buttons in project cards.
 - Updated project descriptions and highlights in the portfolio config.
@@ -114,3 +114,39 @@ Build status:
 
 - The bundle still contains a large `TechStack` chunk because `Three.js`, `Rapier`, and related 3D dependencies are heavy.
 - If needed, the next major optimization step would be to replace the physics-driven tech stack with a lighter animation approach or further reduce the 3D asset cost.
+
+## Real-Time Chat Application Optimizations
+
+In addition to the portfolio updates, performance optimizations were applied to the **Real-Time Chat Application** to improve initial load times and reduce server strain.
+
+### 1. Local Storage Caching
+Files:
+- `client/src/pages/Dashboard.jsx`
+- `client/src/components/ChatWindow.jsx`
+
+Changes made:
+- Implemented an "instant load" cache-first strategy. 
+- Cached `conversations` (chats & groups) and `contacts` in `localStorage` upon initial fetch.
+- Cached the `chat_history` for individual chat rooms, storing the 50 most recent messages locally.
+- Updated `useEffect` hooks to parse and render `localStorage` data immediately on component mount, providing a seamless and instant UI experience.
+- Ensured background syncs overwrite the `localStorage` cache to keep it up-to-date with the database.
+- Handled socket events (e.g. `receive_message`, `user_status_changed`) to automatically sync new messages and online statuses directly into the local cache.
+
+### 2. Message Pagination and Scroll Loading
+Files:
+- `server/controllers/messageController.js`
+- `client/src/components/ChatWindow.jsx`
+
+Changes made:
+- Added `skip` and `limit` parameters to the backend `/api/messages/:roomId` route.
+- Optimized the database query to sort messages by `timestamp: -1`, applying limits for pagination, and reversing the array for chronological rendering on the client.
+- Added a `hasMore` flag to the API response to track pagination state.
+- Implemented an `onScroll` event listener in `ChatWindow.jsx` to detect when users scroll to the top of the chat history.
+- Automatically fetched older messages in batches of 50 and prepended them to the UI state.
+- Maintained the exact scroll position by calculating `scrollHeight` differences, ensuring the UI does not jerk to the top when older messages render.
+
+### 3. Offline Support
+Changes made:
+- Implemented network error catching when fetching messages.
+- Added an "Offline Banner" to notify the user if they lose connection.
+- Ensured that cached `localStorage` messages remain readable and fully interactable even when the backend is unreachable.
