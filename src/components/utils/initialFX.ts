@@ -22,11 +22,10 @@ export function initialFX() {
   });
   gsap.fromTo(
     landingText.chars,
-    { opacity: 0, y: 80, filter: "blur(5px)" },
+    { opacity: 0, y: 80 },
     {
       opacity: 1,
       duration: 1.2,
-      filter: "blur(0px)",
       ease: "power3.inOut",
       y: 0,
       stagger: 0.025,
@@ -39,11 +38,10 @@ export function initialFX() {
   var landingText1 = new TextSplitter(".landing-h2-1", TextProps);
   gsap.fromTo(
     landingText1.chars,
-    { opacity: 0, y: 80, filter: "blur(5px)" },
+    { opacity: 0, y: 80 },
     {
       opacity: 1,
       duration: 1.2,
-      filter: "blur(0px)",
       ease: "power3.inOut",
       y: 0,
       stagger: 0.025,

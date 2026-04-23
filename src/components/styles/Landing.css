@@ -26,6 +26,7 @@
   filter: blur(60px);
   border-radius: 50%;
   animation: loadingCircle 5s linear infinite;
+  will-change: transform;
 }
 
 .nav-fade {
@@ -44,11 +45,11 @@
 
 @keyframes loadingCircle {
   0% {
-    transform: translate(-95%, -75%) rotateZ(0deg);
+    transform: translate3d(-95%, -75%, 0) rotate(0deg);
   }
 
   100% {
-    transform: translate(-95%, -75%) rotateZ(360deg);
+    transform: translate3d(-95%, -75%, 0) rotate(360deg);
   }
 }
 
@@ -66,11 +67,15 @@
   filter: blur(50px);
   border-radius: 50%;
   animation: loadingCircle2 5s linear infinite;
+  will-change: transform;
 }
 
 @keyframes loadingCircle2 {
+  0% {
+    transform: translate3d(calc(100% - 2px), -50%, 0) rotate(0deg);
+  }
   100% {
-    transform: translate(calc(100% - 2px), -50%) rotate(360deg);
+    transform: translate3d(calc(100% - 2px), -50%, 0) rotate(360deg);
   }
 }
 
